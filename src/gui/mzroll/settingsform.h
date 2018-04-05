@@ -26,6 +26,7 @@ class SettingsForm : public QDialog, public Ui_SettingsForm
             void recomputeIsotopes();
             void selectFolder(QString key);
             void selectFile(QString key);
+            void selectMsconvertInputFolder(QString key);
             void  setNumericValue(QString key, double value);
             void  setStringValue(QString key, QString value);
             void updateMultiprocessing();
@@ -35,6 +36,7 @@ class SettingsForm : public QDialog, public Ui_SettingsForm
             void dialogRejected();
             void setIsotopicPeakFiltering();
             void startMsconvert();
+            void applyRegularExpScript();
 
             /*
             * [Enable/disable deltaRtWeight slider and display appropriate group rank formula in UI]
@@ -63,6 +65,7 @@ class SettingsForm : public QDialog, public Ui_SettingsForm
             inline void selectMethodsFolder() {   selectFolder("methodsFolder"); }
             inline void selectPathwaysFolder() {   selectFolder("pathwaysFolder"); }
             inline void selectRProgram() {         selectFile("Rprogram"); }
+            inline void selectMsconvertInputPath() { selectMsconvertInputFolder("msconvert_file_path"); }
             inline void selectRawExtractor() {      selectFile("RawExtractProgram"); }
             inline void setQ1Tollrance(double value) { setNumericValue("amuQ1",value); }
             inline void setQ3Tollrance(double value) { setNumericValue("amuQ3",value); }
