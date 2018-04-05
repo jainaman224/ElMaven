@@ -34,7 +34,6 @@ class SettingsForm : public QDialog, public Ui_SettingsForm
             void setGroupRankStatus();
             void setInitialGroupRank();
             void dialogRejected();
-            void setIsotopicPeakFiltering();
             void startMsconvert();
             void applyRegularExpScript();
 
