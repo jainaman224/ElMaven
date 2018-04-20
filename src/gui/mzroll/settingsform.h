@@ -37,6 +37,7 @@ class SettingsForm : public QDialog, public Ui_SettingsForm
             void setIsotopicPeakFiltering();
             void startMsconvert();
             void applyRegularExpScript();
+            void itHasFinished(int exitCode, QProcess::ExitStatus exitStatus);
 
             /*
             * [Enable/disable deltaRtWeight slider and display appropriate group rank formula in UI]

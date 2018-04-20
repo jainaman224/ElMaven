@@ -2,6 +2,8 @@
 #include <QProcess>
 #include <QDir>
 #include <QString>
+#include <QProgressBar>
+#include <QProgressDialog>
 
 OptionsDialogSettings::OptionsDialogSettings(SettingsForm* dialog): sf(dialog)
 {
@@ -356,6 +358,25 @@ void SettingsForm::updateSettingFormGUI() {
         scan_filter_min_quantile->setValue( settings->value("scan_filter_min_quantile").toInt());
 }
 
+void SettingsForm::itHasFinished(int exitCode, QProcess::ExitStatus exitStatus)
+{
+    
+    if(exitStatus == QProcess::NormalExit) {
+        //Let's make progress bar to show 100%
+        qDebug() << "IN exitStatus == QProcess::NormalExit " << '\n' ;
+        qDebug() << exitStatus << '\n' ;
+        msconvertProgressBar->setMaximum(1);
+        msconvertProgressBar->setMinimum(0);
+        msconvertProgressBar->setValue(1);
+        msconvertStatus->setText("Complete.");
+    }
+    else {
+        msconvertStatus->setText("Error in process");
+        qDebug() << "IN exitStatus != QProcess::NormalExit " << '\n' ;
+    }
+}
+
+
 void SettingsForm::startMsconvert() {
     qDebug() << "IN startMsconvert " << '\n' ;
     qDebug() << msconvert_file_path->text() << '\n' ;
@@ -371,12 +392,38 @@ void SettingsForm::startMsconvert() {
     }
 
     QProcess *process = new QProcess();
-    process->start("docker run -v " + msconvert_file_path->text() + ":/data -e RAW_FILE_TYPE="+msconvert_input_type->currentText() +" -e OUTPUT_FILE_TYPE="+ msconvert_output_file_type->currentText()+ " kushalgupta/msconvert:0.1");
-    process->waitForFinished();
-    QString strOut = process->readAllStandardOutput();
+    connect(process, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(itHasFinished(int, QProcess::ExitStatus)));
+    // connect(process, SIGNAL(error(QProcess::ProcessError)), process, SLOT(itHasError(QProcess::ProcessError)));
+    msconvertProgressBar->setMaximum(0);
+    msconvertProgressBar->setMinimum(0);
+    msconvertStatus->setText("Running...");
+
+    process->start("docker run -v " + msconvert_file_path->text() + ":/data -e RAW_FILE_TYPE="+msconvert_input_type->currentText() +" -e OUTPUT_FILE_TYPE="+ msconvert_output_file_type->currentText()+ " kushalgupta/msconvert:0.2");
+    // process->start("docker run -v /home/kushal/Desktop/Elucidata_Projects/elmaven-msconvert-docker/data:/data -e RAW_FILE_TYPE=D -e OUTPUT_FILE_TYPE=mzML kushal/pwiz_raw:0.7");
+    // process->waitForFinished();
+    // QString strOut = process->readAllStandardOutput();
     
-    qDebug() << strOut;
-    return;
+    // qDebug() << strOut;
+    // usleep(1000);
+    // QString output(process->readAllStandardOutput());
+    // qDebug()<<output;
+ 
+    // QString err(process->readAllStandardError());
+    // qDebug()<<err;
+
+    // if(!err.isEmpty()) {
+    //     qDebug() << "Error : " << err << '\n';
+    //     msconvertProgressBar->setValue(0);
+    //     msconvertProgressBar->reset();
+    //     return;
+    // }
+    // else {
+    //     msconvertProgressBar->setMaximum(100);
+    //     msconvertProgressBar->setValue(100);
+    //     return;
+    // }
+
+
 }
 
 void SettingsForm::applyRegularExpScript() {
