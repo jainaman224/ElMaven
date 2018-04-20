@@ -29,7 +29,7 @@ fi
 
 if [ -x "$(command -v docker)" ]; then
     echo "Update docker and pull kushalgupta/msconvert:0.2"
-    docker pull kushalgupta/msconvert:0.1
+    docker pull kushalgupta/msconvert:0.2
     # command
 else
     echo "Install docker"
