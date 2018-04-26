@@ -1514,7 +1514,12 @@ p, li { white-space: pre-wrap; }
        </item>
        <item>
         <property name="text">
-         <string>o</string>
+         <string>raw</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>RAW</string>
         </property>
        </item>
       </widget>
