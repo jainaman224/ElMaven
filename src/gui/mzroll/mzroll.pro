@@ -82,7 +82,8 @@ FORMS = forms/settingsform.ui  \
         forms/spectramatching.ui\
         forms/peptidefragmentation.ui \
     forms/awsbucketcredentialsdialog.ui \
-    forms/alignmentpolyvizdockwidget.ui
+    forms/alignmentpolyvizdockwidget.ui \
+    forms/isotopeplotdockwidget.ui
 
 HEADERS +=  stable.h \
             globals.h \
@@ -148,7 +149,8 @@ HEADERS +=  stable.h \
                     awsbucketcredentialsdialog.h \
                     alignmentpolyvizdockwidget.h \
                     controller.h \
-                    numeric_treewidgetitem.h
+                    numeric_treewidgetitem.h \
+                    isotopeplotdockwidget.h
 
 
 
@@ -213,7 +215,8 @@ database.cpp \
     awsbucketcredentialsdialog.cpp \
     alignmentpolyvizdockwidget.cpp \
     controller.cpp \
-    numeric_treewidgetitem.cpp
+    numeric_treewidgetitem.cpp \
+    isotopeplotdockwidget.cpp
 
 contains (DEFINES,EMBEDHTTPSERVER) {
     SOURCES += remotespectrahandler.cpp
