@@ -1873,7 +1873,7 @@ void EicWidget::updateIsotopicBarplot(PeakGroup* group) {
 	if (_showIsotopePlot) {
 		getMainWindow()->isotopePlotDockWidget->show();
 		getMainWindow()->isotopePlotDockWidget->raise();
-		getMainWindow()->addIsotopicPlot(group);
+		getMainWindow()->isotopePlot->setPeakGroup(group);
 	} else {
 		getMainWindow()->isotopePlotDockWidget->hide();
 	}

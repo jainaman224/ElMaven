@@ -257,7 +257,6 @@ public:
 		Q_EMIT(reBoot());
 	}
 	vector<mzSample*> getVisibleSamples();
-	void addIsotopicPlot(PeakGroup* group);
 
 	PeakGroup::QType getUserQuantType();
 
