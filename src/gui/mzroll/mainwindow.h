@@ -77,6 +77,7 @@ class TreeDockWidget;
 class TableDockWidget;
 class AlignmentPolyVizDockWidget;
 class IsotopePlotDockWidget;
+class IsotopePlot;
 class Classifier;
 class ClassifierNeuralNet;
 class ClassifierNaiveBayes;
@@ -400,7 +401,7 @@ private Q_SLOTS:
 	void checkSRMList();
 	void readSettings();
 	void writeSettings();
-	void showIsotopicBarPlot(bool);
+	void toggleIsotopicBarPlot();
 	inline void slotReboot() {
  		qDebug() << "Performing application reboot...";
 		QString rep = QDir::cleanPath(QCoreApplication::applicationFilePath());
