@@ -1857,15 +1857,6 @@ void EicWidget::selectGroupNearRt(float rt) {
 	getMainWindow()->mavenParameters->setPeakGroup(selGroup);
 }
 
-void EicWidget::showIsotopicBarPlot(bool _showIsotopicBarPlot) {
-	if (_showIsotopicBarPlot) {
-		getMainWindow()->isotopePlotDockWidget->show();
-		//addIsotopicPlot(group);
-	} else {
-		getMainWindow()->isotopePlotDockWidget->hide();
-	}
-}
-
 void EicWidget::updateIsotopicBarplot(PeakGroup* group) {
 	if (_frozen || group == NULL)
 		return;

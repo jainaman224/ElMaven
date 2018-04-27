@@ -3376,7 +3376,7 @@ QWidget* MainWindowWidgetAction::createWidget(QWidget *parent) {
 		btnShowIsotopeplot->setCheckable(true);
 
 		connect(btnShowIsotopeplot,SIGNAL(clicked(bool)),  mw->getEicWidget(), SLOT(showIsotopePlot(bool)));
-		connect(btnShowIsotopeplot,SIGNAL(clicked(bool)),  mw->getEicWidget(), SLOT(showIsotopicBarPlot(bool)));
+		connect(btnShowIsotopeplot,SIGNAL(clicked(bool)), SLOT(showIsotopicBarPlot(bool)));
 		connect(btnShowIsotopeplot,SIGNAL(clicked(bool)), mw->isotopeWidget, SLOT(updateIsotopicBarplot()));
 
 		btnShowIsotopeplot->setChecked(mw->isotopePlotDockWidget->isVisible());
@@ -3613,6 +3613,14 @@ int MainWindow::versionCheck() {
 			SLOT(append(QString)));
 
 	return 0;
+}
+
+void MainWindow::showIsotopicBarPlot(bool showIsotopicBarPlot)
+{
+	if (showIsotopicBarPlot)
+		isotopePlotDockWidget->show();
+	else
+		isotopePlotDockWidget->hide();
 }
 
 void MainWindow::normalizeIsotopicMatrix(MatrixXf &MM) {
